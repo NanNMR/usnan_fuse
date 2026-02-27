@@ -18,7 +18,7 @@ from .fs import NMRHubFS
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="usnan-fuse",
-        description="Mount NMR Hub datasets as a FUSE filesystem.",
+        description="Mount NMRHub datasets as a FUSE filesystem.",
     )
     parser.add_argument("mountpoint", help="Directory to mount the filesystem on.")
     parser.add_argument(
@@ -51,7 +51,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--api-url",
         default="https://api.nmrhub.org",
-        help="NMR Hub API base URL.",
+        help="NMRHub API base URL.",
     )
     parser.add_argument(
         "--login",

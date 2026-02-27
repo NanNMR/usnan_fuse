@@ -18,7 +18,7 @@ logger = logging.getLogger(__name__)
 
 
 class NMRHubFS(Operations):
-    """Read-only FUSE filesystem that presents NMR Hub datasets as directories.
+    """Read-only FUSE filesystem that presents NMRHub datasets as directories.
 
     Path hierarchy for most categories::
 

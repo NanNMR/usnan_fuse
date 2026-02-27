@@ -1,1 +1,1 @@
-"""USNAN FUSE Filesystem — browse NMR Hub datasets as a mounted directory."""
+"""USNAN FUSE Filesystem — browse NMRHub datasets as a mounted directory."""
