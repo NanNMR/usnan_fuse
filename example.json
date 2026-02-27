@@ -1,0 +1,15 @@
+[
+    {                                                                                                                                                                                                                               
+      "name": "Knowledgebase Datasets",                                                                                                                                                                                           
+      "filters": [
+        {"field": "is_knowledgebase", "value": true, "match_mode": "equals"}
+      ]
+    },
+    {
+      "name": "Solution NMR",
+      "filters": [
+        {"field": "state", "value": "solution", "match_mode": "equals"},
+        {"field": "solvent", "value": "DMSO", "match_mode": "equals"}
+      ]
+    }
+  ]
