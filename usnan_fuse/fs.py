@@ -184,7 +184,12 @@ class NMRHubFS(Operations):
 
         if subpath is None:
             mtime = listing.timestamps.get(dataset_name, self._mount_time)
-            return self._dir_stat(mtime)
+            ds_id = listing.folder_lookup[dataset_name]
+            size = self._cache.cached_size(ds_id)
+            st = self._dir_stat(mtime)
+            if size is not None:
+                st["st_size"] = size
+            return st
 
         # --- PUBLISHED: extra version directory level ---
         if category == Category.PUBLISHED:
@@ -199,9 +204,13 @@ class NMRHubFS(Operations):
 
             if inner_path is None:
                 # /<category>/<dataset>/<version> — dir stat, no download
-                return self._dir_stat(
-                    listing.timestamps.get(dataset_name, self._mount_time)
-                )
+                mtime = listing.timestamps.get(dataset_name, self._mount_time)
+                ds_id = versions[version_label]
+                size = self._cache.cached_size(ds_id)
+                st = self._dir_stat(mtime)
+                if size is not None:
+                    st["st_size"] = size
+                return st
 
             # /<category>/<dataset>/<version>/<inner_path>
             # Only stat if already cached — don't trigger download

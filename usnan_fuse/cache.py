@@ -50,6 +50,13 @@ class DownloadCache:
         d = self._dataset_dir(dataset_id)
         return d.is_dir() and any(d.iterdir())
 
+    def cached_size(self, dataset_id: int) -> Optional[int]:
+        """Return total size in bytes of a cached dataset, or None if not cached."""
+        d = self._dataset_dir(dataset_id)
+        if not d.is_dir() or not any(d.iterdir()):
+            return None
+        return self._dir_size(d)
+
     def ensure_downloaded(self, client, dataset_id: int) -> Path:
         """Download the dataset if not already cached. Thread-safe.
 
