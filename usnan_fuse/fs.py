@@ -221,7 +221,7 @@ class NMRHubFS(Operations):
             raise FuseOSError(errno.ENOENT)
 
         if real.is_dir():
-            return self._dir_stat(os.path.getmtime(real))
+            return self._dir_stat_from_path(real)
         return self._file_stat_from_path(real)
 
     def readdir(self, path, fh):
