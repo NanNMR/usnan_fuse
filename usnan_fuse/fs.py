@@ -184,8 +184,8 @@ class NMRHubFS(Operations):
 
         if subpath is None:
             mtime = listing.timestamps.get(dataset_name, self._mount_time)
-            ds_id = listing.folder_lookup[dataset_name]
-            size = self._cache.cached_size(ds_id)
+            ds = listing.folder_lookup[dataset_name]
+            size = self._cache.cached_size(ds.id)
             st = self._dir_stat(mtime)
             if size is not None:
                 st["st_size"] = size
