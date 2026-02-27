@@ -97,7 +97,7 @@ class NMRHubFS(Operations):
             "st_nlink": 2,
             "st_uid": os.getuid(),
             "st_gid": os.getgid(),
-            "st_size": 0,
+            "st_size": 4096,
             "st_atime": t,
             "st_mtime": t,
             "st_ctime": t,
