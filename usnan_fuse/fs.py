@@ -104,6 +104,20 @@ class NMRHubFS(Operations):
         }
 
     @staticmethod
+    def _dir_stat_from_path(real_path) -> dict:
+        st = os.stat(real_path)
+        return {
+            "st_mode": stat.S_IFDIR | 0o555,
+            "st_nlink": st.st_nlink,
+            "st_uid": st.st_uid,
+            "st_gid": st.st_gid,
+            "st_size": st.st_size,
+            "st_atime": st.st_atime,
+            "st_mtime": st.st_mtime,
+            "st_ctime": st.st_ctime,
+        }
+
+    @staticmethod
     def _file_stat_from_path(real_path) -> dict:
         st = os.stat(real_path)
         return {
@@ -196,7 +210,7 @@ class NMRHubFS(Operations):
             if real is None:
                 raise FuseOSError(errno.ENOENT)
             if real.is_dir():
-                return self._dir_stat(os.path.getmtime(real))
+                return self._dir_stat_from_path(real)
             return self._file_stat_from_path(real)
 
         # --- Standard categories ---
